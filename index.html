@@ -1,6 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="ko">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>우함서가</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #171a19;
+  color: #e8e8df;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 45px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.recipient {
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: #aab4ac;
+  margin-bottom: 65px;
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #8c9991;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: 12px;
+  margin: 0 0 12px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #aab4ac;
+  letter-spacing: 3px;
+  margin-bottom: 65px;
+}
+
+.morse-area {
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 27px;
+  margin-bottom: 35px;
+}
+
+.morse-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 17px;
+}
+
+.syllable {
+  font-size: 12px;
+  color: #718077;
+  width: 14px;
+}
+
+.jamo-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  opacity: 0.25;
+  transition: opacity 0.15s ease;
+}
+
+.jamo-group.active {
+  opacity: 1;
+}
+
+.signals {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 13px;
+}
+
+.signal {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d6e8ce;
+}
+
+.signal.dash {
+  width: 25px;
+  height: 7px;
+  border-radius: 10px;
+}
+
+.jamo-label {
+  font-size: 10px;
+  color: #8c9991;
+  letter-spacing: 1px;
+}
+
+.jamo-group.active .jamo-label {
+  color: #d6e8ce;
+}
+
+.word {
+  font-size: 10px;
+  color: #718077;
+  letter-spacing: 3px;
+  min-height: 15px;
+  margin-bottom: 15px;
+}
+
+audio {
+  width: 100%;
+  margin: 15px 0 25px;
+}
+
+.download {
+  display: inline-block;
+  color: #d6e8ce;
+  border: 1px solid #64756a;
+  padding: 12px 25px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  transition: background 0.2s;
+  background: transparent;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+}
+
+.download:hover {
+  background: #35443a;
+}
+
+.footer {
+  margin-top: 65px;
+  color: #aab4ac;
+  font-size: 14px;
+  letter-spacing: 4px;
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 34px;
+  }
+
+  .morse-line {
+    gap: 12px;
+  }
+
+  .signals {
+    gap: 4px;
+  }
+
+  .signal.dash {
+    width: 19px;
+  }
+}
+</style>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="Content-Style-Type" content="text/css">
   <title></title>
@@ -11,7 +190,207 @@
     p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
   </style>
 </head>
+
 <body>
+<div class="container">
+
+  <div class="recipient">가제트께</div>
+
+  <div class="eyebrow">AN EXPERIMENTAL MUSIC PIECE</div>
+
+  <h1>우함서가</h1>
+  <div class="subtitle">우리 · 함께 · 서로 · 같이</div>
+
+  <div class="morse-area">
+    <div class="morse-line" id="line0"></div>
+    <div class="morse-line" id="line1"></div>
+    <div class="morse-line" id="line2"></div>
+    <div class="morse-line" id="line3"></div>
+  </div>
+
+  <div class="word" id="currentWord">PLAY TO BEGIN</div>
+
+  <audio id="music" controls preload="metadata">
+    <source src="woohamseoga.mp3" type="audio/mpeg">
+    브라우저에서 오디오를 재생할 수 없습니다.
+  </audio>
+
+  <a class="download"
+   href="https://github.com/mmuueenngg/woohamseoga/raw/refs/heads/main/woohamseoga.mp3?download=1">
+  DOWNLOAD MUSIC ↓
+</a>
+
+  <div class="footer">뮁 드림</div>
+
+</div>
+
+<script>
+
+// 한국어 모스부호
+// 우: ㅇ + ㅜ
+// 함: ㅎ + ㅏ + ㅁ
+// 서: ㅅ + ㅓ
+// 가: ㄱ + ㅏ
+
+const syllables = [
+  {
+    name: "우",
+    jamo: [
+      { name: "ㅇ", code: "-.-" },
+      { name: "ㅜ", code: "...." }
+    ]
+  },
+  {
+    name: "함",
+    jamo: [
+      { name: "ㅎ", code: ".---" },
+      { name: "ㅏ", code: "." },
+      { name: "ㅁ", code: "--" }
+    ]
+  },
+  {
+    name: "서",
+    jamo: [
+      { name: "ㅅ", code: "--." },
+      { name: "ㅓ", code: "-" }
+    ]
+  },
+  {
+    name: "가",
+    jamo: [
+      { name: "ㄱ", code: ".-.." },
+      { name: "ㅏ", code: "." }
+    ]
+  }
+];
+
+const music = document.getElementById("music");
+const currentWord = document.getElementById("currentWord");
+
+const jamoGroups = [];
+
+// 모스부호 화면 만들기
+syllables.forEach((syllable, index) => {
+
+  const line = document.getElementById("line" + index);
+
+  const syllableLabel = document.createElement("div");
+  syllableLabel.className = "syllable";
+  syllableLabel.textContent = syllable.name;
+  line.appendChild(syllableLabel);
+
+  syllable.jamo.forEach(jamo => {
+
+    const group = document.createElement("div");
+    group.className = "jamo-group";
+
+    const signals = document.createElement("div");
+    signals.className = "signals";
+
+    jamo.code.split("").forEach(symbol => {
+      const signal = document.createElement("div");
+
+      signal.className =
+        "signal " + (symbol === "-" ? "dash" : "dot");
+
+      signals.appendChild(signal);
+    });
+
+    const label = document.createElement("div");
+    label.className = "jamo-label";
+    label.textContent = jamo.name;
+
+    group.appendChild(signals);
+    group.appendChild(label);
+    line.appendChild(group);
+
+    jamoGroups.push({
+      element: group,
+      syllable: syllable.name,
+      jamo: jamo.name
+    });
+
+  });
+
+});
+
+// 애니메이션 속도
+// 한 자모가 켜져 있는 시간: 0.42초
+// 다음 자모로 넘어가는 간격: 0.10초
+
+const activeDuration = 420;
+const gapDuration = 100;
+const cycleDuration = activeDuration + gapDuration;
+
+let animationFrame;
+
+function updateAnimation() {
+
+  if (music.paused || music.ended) return;
+
+  const elapsed = music.currentTime * 1000;
+  const position = Math.floor(elapsed / cycleDuration);
+  const withinCycle = elapsed % cycleDuration;
+
+  const activeIndex = position % jamoGroups.length;
+
+  jamoGroups.forEach(group => {
+    group.element.classList.remove("active");
+  });
+
+  if (withinCycle < activeDuration) {
+
+    const current = jamoGroups[activeIndex];
+
+    current.element.classList.add("active");
+
+    currentWord.textContent =
+      "SIGNAL : " + current.syllable + " · " + current.jamo;
+
+  } else {
+    currentWord.textContent = "";
+  }
+}
+
+function animate() {
+  updateAnimation();
+
+  if (!music.paused && !music.ended) {
+    animationFrame = requestAnimationFrame(animate);
+  }
+}
+
+function stopAnimation() {
+  cancelAnimationFrame(animationFrame);
+}
+
+music.addEventListener("play", () => {
+  stopAnimation();
+  animate();
+});
+
+music.addEventListener("pause", () => {
+  stopAnimation();
+  updateAnimation();
+});
+
+music.addEventListener("seeked", () => {
+  if (!music.paused) {
+    updateAnimation();
+  }
+});
+
+music.addEventListener("ended", () => {
+  stopAnimation();
+
+  jamoGroups.forEach(group => {
+    group.element.classList.remove("active");
+  });
+
+  currentWord.textContent = "END";
+});
+
+</script>
 <p class="p1"><br></p>
 <p class="p2">&lt;!DOCTYPE html&gt;</p>
 <p class="p2">&lt;html lang="ko"&gt;</p>

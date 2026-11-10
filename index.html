@@ -1,336 +1,274 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>우함서가</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #171a19;
+      color: #e5e9df;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Noto Sans KR", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 560px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: #8d9c8b;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      margin-bottom: 42px;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      margin: 0 0 16px;
+    }
+
+    .subtitle {
+      color: #aab5a5;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      margin-bottom: 58px;
+    }
+
+    .morse-area {
+      margin: 0 auto 52px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .morse-line {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .syllable {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      min-width: 48px;
+    }
+
+    .syllable-name {
+      color: #aab5a5;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+    }
+
+    .signals {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      min-height: 12px;
+    }
+
+    .signal {
+      display: inline-block;
+      height: 4px;
+      width: 4px;
+      border-radius: 50%;
+      background: #465347;
+      transition: background 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .signal.dash {
+      width: 16px;
+      border-radius: 3px;
+    }
+
+    .signal.active {
+      background: #c4e2a5;
+      box-shadow: 0 0 10px rgba(196, 226, 165, 0.55);
+    }
+
+    .player {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 360px;
+    }
+
+    audio {
+      width: 100%;
+      height: 42px;
+      margin-bottom: 18px;
+    }
+
+    .download {
+      display: inline-block;
+      color: #aab5a5;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-decoration: none;
+      border-bottom: 1px solid #536052;
+      padding-bottom: 5px;
+    }
+
+    .download:hover {
+      color: #d5e8c2;
+      border-color: #d5e8c2;
+    }
+
+    footer {
+      margin-top: 76px;
+      color: #596458;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+    }
+
+    @media (max-width: 420px) {
+      h1 {
+        font-size: 34px;
+      }
+
+      .morse-line {
+        gap: 16px;
+      }
+    }
   </style>
 </head>
+
 <body>
-<p class="p1"><br></p>
-<p class="p2">&lt;!DOCTYPE html&gt;</p>
-<p class="p2">&lt;html lang="ko"&gt;</p>
-<p class="p2">&lt;head&gt;</p>
-<p class="p2">&lt;meta charset="UTF-8"&gt;</p>
-<p class="p2">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p2">&lt;title&gt;우함서가&lt;/title&gt;</p>
-<p class="p1"><br></p>
-<p class="p2">&lt;style&gt;</p>
-<p class="p2">* {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>box-sizing: border-box;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">body {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>margin: 0;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>background: #171a19;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>color: #e8e8df;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>font-family: Arial, sans-serif;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>min-height: 100vh;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>display: flex;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>justify-content: center;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>align-items: center;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>padding: 30px 20px;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">.container {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>width: 100%;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>max-width: 600px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>text-align: center;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">.eyebrow {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>font-size: 11px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>letter-spacing: 3px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>color: #8c9991;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>margin-bottom: 35px;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">h1 {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>font-size: 42px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>font-weight: 400;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>letter-spacing: 12px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>margin-bottom: 12px;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">.subtitle {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>font-size: 14px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>color: #aab4ac;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>letter-spacing: 3px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>margin-bottom: 65px;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">.morse-area {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>min-height: 210px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>display: flex;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>flex-direction: column;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>justify-content: center;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>gap: 24px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>margin-bottom: 45px;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">.morse-line {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>display: flex;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>justify-content: center;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>align-items: center;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>gap: 9px;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">.signal {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>width: 9px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>height: 9px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>border-radius: 50%;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>background: #46534b;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>opacity: 0.25;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>transition: opacity 0.12s, background 0.12s;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">.signal.dash {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>width: 30px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>height: 7px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>border-radius: 10px;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">.signal.active {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>background: #d6e8ce;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>opacity: 1;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>box-shadow: 0 0 18px #b9d6ad;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">.word {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>font-size: 11px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>color: #718077;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>letter-spacing: 4px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>margin-top: 10px;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">audio {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>width: 100%;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>margin: 15px 0 25px;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">.download {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>display: inline-block;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>color: #d6e8ce;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>border: 1px solid #64756a;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>padding: 12px 25px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>text-decoration: none;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>font-size: 12px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>letter-spacing: 2px;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">.download:hover {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>background: #35443a;</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">.footer {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>margin-top: 70px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>color: #66736b;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>font-size: 10px;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>letter-spacing: 2px;</p>
-<p class="p2">}</p>
-<p class="p2">&lt;/style&gt;</p>
-<p class="p2">&lt;/head&gt;</p>
-<p class="p1"><br></p>
-<p class="p2">&lt;body&gt;</p>
-<p class="p2">&lt;div class="container"&gt;</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;div class="eyebrow"&gt;AN EXPERIMENTAL MUSIC PIECE&lt;/div&gt;</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;h1&gt;우함서가&lt;/h1&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;div class="subtitle"&gt;우리 · 함께 · 서로 · 같이&lt;/div&gt;</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;div class="morse-area"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>&lt;div class="morse-line" id="line0"&gt;&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>&lt;div class="morse-line" id="line1"&gt;&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>&lt;div class="morse-line" id="line2"&gt;&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>&lt;div class="morse-line" id="line3"&gt;&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;div class="word" id="currentWord"&gt;PLAY TO BEGIN&lt;/div&gt;</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;audio id="music" controls preload="metadata"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>&lt;source src="woohamseoga.mp3" type="audio/mpeg"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>브라우저에서 오디오를 재생할 수 없습니다.</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;/audio&gt;</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;a class="download"</p>
-<p class="p2"><span class="Apple-converted-space">     </span>href="woohamseoga.mp3"</p>
-<p class="p2"><span class="Apple-converted-space">     </span>download="woohamseoga.mp3"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">     </span>DOWNLOAD MUSIC ↓</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;/a&gt;</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;div class="footer"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>WO O H A M S E O G A</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p1"><br></p>
-<p class="p2">&lt;/div&gt;</p>
-<p class="p1"><br></p>
-<p class="p2">&lt;script&gt;</p>
-<p class="p2">// 한국어 모스 부호</p>
-<p class="p2">// 우: ㅇ + ㅜ</p>
-<p class="p2">// 함: ㅎ + ㅏ + ㅁ</p>
-<p class="p2">// 서: ㅅ + ㅓ</p>
-<p class="p2">// 가: ㄱ + ㅏ</p>
-<p class="p1"><br></p>
-<p class="p2">const syllables = [</p>
-<p class="p2"><span class="Apple-converted-space">  </span>{ name: "우", jamo: ["-.-", "...."] },</p>
-<p class="p2"><span class="Apple-converted-space">  </span>{ name: "함", jamo: [".---", ".", "--"] },</p>
-<p class="p2"><span class="Apple-converted-space">  </span>{ name: "서", jamo: ["--.", "-"] },</p>
-<p class="p2"><span class="Apple-converted-space">  </span>{ name: "가", jamo: [".-..", "."] }</p>
-<p class="p2">];</p>
-<p class="p1"><br></p>
-<p class="p2">// 신호와 침묵을 시간 단위로 구성</p>
-<p class="p2">const segments = [];</p>
-<p class="p1"><br></p>
-<p class="p2">syllables.forEach((syllable, sIndex) =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>syllable.jamo.forEach((code, jIndex) =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">    </span>const symbols = code.split("");</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>symbols.forEach((symbol, i) =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>segments.push({</p>
-<p class="p2"><span class="Apple-converted-space">        </span>type: symbol,</p>
-<p class="p2"><span class="Apple-converted-space">        </span>units: symbol === "." ? 1 : 3,</p>
-<p class="p2"><span class="Apple-converted-space">        </span>word: syllable.name,</p>
-<p class="p2"><span class="Apple-converted-space">        </span>index: sIndex</p>
-<p class="p2"><span class="Apple-converted-space">      </span>});</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">      </span>// 한 자모 안에서 신호 사이의 간격</p>
-<p class="p2"><span class="Apple-converted-space">      </span>if (i &lt; symbols.length - 1) {</p>
-<p class="p2"><span class="Apple-converted-space">        </span>segments.push({ type: "gap", units: 1 });</p>
-<p class="p2"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>// 자모 사이의 간격</p>
-<p class="p2"><span class="Apple-converted-space">    </span>if (jIndex &lt; syllable.jamo.length - 1) {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>segments.push({ type: "gap", units: 3 });</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span>});</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>// 음절 사이의 간격</p>
-<p class="p2"><span class="Apple-converted-space">  </span>if (sIndex &lt; syllables.length - 1) {</p>
-<p class="p2"><span class="Apple-converted-space">    </span>segments.push({ type: "gap", units: 5 });</p>
-<p class="p2"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2">});</p>
-<p class="p1"><br></p>
-<p class="p2">const totalUnits = segments.reduce(</p>
-<p class="p2"><span class="Apple-converted-space">  </span>(sum, segment) =&gt; sum + segment.units, 0</p>
-<p class="p2">);</p>
-<p class="p1"><br></p>
-<p class="p2">const music = document.getElementById("music");</p>
-<p class="p2">const currentWord = document.getElementById("currentWord");</p>
-<p class="p1"><br></p>
-<p class="p2">const lines = syllables.map((syllable, index) =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>const line = document.getElementById("line" + index);</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>syllable.jamo.join("").split("").forEach(symbol =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">    </span>const dot = document.createElement("div");</p>
-<p class="p2"><span class="Apple-converted-space">    </span>dot.className = "signal " + (symbol === "-" ? "dash" : "dot");</p>
-<p class="p2"><span class="Apple-converted-space">    </span>line.appendChild(dot);</p>
-<p class="p2"><span class="Apple-converted-space">  </span>});</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>return line;</p>
-<p class="p2">});</p>
-<p class="p1"><br></p>
-<p class="p2">function updateAnimation() {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>if (!music.duration || !Number.isFinite(music.duration)) return;</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>const progress = music.currentTime / music.duration;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>const position = progress * totalUnits;</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>let elapsed = 0;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>let activeSegment = null;</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>for (const segment of segments) {</p>
-<p class="p2"><span class="Apple-converted-space">    </span>if (</p>
-<p class="p2"><span class="Apple-converted-space">      </span>position &gt;= elapsed &amp;&amp;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>position &lt; elapsed + segment.units</p>
-<p class="p2"><span class="Apple-converted-space">    </span>) {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>activeSegment = segment;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>break;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>elapsed += segment.units;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>// 모든 신호를 우선 어둡게</p>
-<p class="p2"><span class="Apple-converted-space">  </span>lines.forEach(line =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">    </span>[...line.children].forEach(dot =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>dot.classList.remove("active");</p>
-<p class="p2"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><span class="Apple-converted-space">  </span>});</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">  </span>if (activeSegment &amp;&amp; activeSegment.type !== "gap") {</p>
-<p class="p2"><span class="Apple-converted-space">    </span>const line = lines[activeSegment.index];</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>// 현재 음절에서 해당 기호를 찾아 활성화</p>
-<p class="p2"><span class="Apple-converted-space">    </span>const signals = [...line.children];</p>
-<p class="p2"><span class="Apple-converted-space">    </span>const signalIndex = signals.findIndex(dot =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>return dot.dataset.used !== "true" &amp;&amp;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>dot.classList.contains(</p>
-<p class="p2"><span class="Apple-converted-space">          </span>activeSegment.type === "-" ? "dash" : "dot"</p>
-<p class="p2"><span class="Apple-converted-space">        </span>);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>// 현재 진행 중인 신호 위치 계산</p>
-<p class="p2"><span class="Apple-converted-space">    </span>let count = 0;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>const currentCode = syllables[activeSegment.index].jamo</p>
-<p class="p2"><span class="Apple-converted-space">      </span>.join("");</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>for (let i = 0; i &lt; activeSegment.index; i++) {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>count += 1;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>const precedingSignals = segments</p>
-<p class="p2"><span class="Apple-converted-space">      </span>.slice(0, segments.indexOf(activeSegment))</p>
-<p class="p2"><span class="Apple-converted-space">      </span>.filter(segment =&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>segment.index === activeSegment.index &amp;&amp;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>segment.type !== "gap"</p>
-<p class="p2"><span class="Apple-converted-space">      </span>).length;</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>const dot = signals[precedingSignals];</p>
-<p class="p2"><span class="Apple-converted-space">    </span>if (dot) dot.classList.add("active");</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>currentWord.textContent =</p>
-<p class="p2"><span class="Apple-converted-space">      </span>"SIGNAL : " + activeSegment.word;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>} else {</p>
-<p class="p2"><span class="Apple-converted-space">    </span>currentWord.textContent = " ";</p>
-<p class="p2"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">let animationFrame;</p>
-<p class="p1"><br></p>
-<p class="p2">function animate() {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>updateAnimation();</p>
-<p class="p2"><span class="Apple-converted-space">  </span>if (!music.paused &amp;&amp; !music.ended) {</p>
-<p class="p2"><span class="Apple-converted-space">    </span>animationFrame = requestAnimationFrame(animate);</p>
-<p class="p2"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2">}</p>
-<p class="p1"><br></p>
-<p class="p2">music.addEventListener("play", () =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>cancelAnimationFrame(animationFrame);</p>
-<p class="p2"><span class="Apple-converted-space">  </span>animate();</p>
-<p class="p2">});</p>
-<p class="p1"><br></p>
-<p class="p2">music.addEventListener("pause", () =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>cancelAnimationFrame(animationFrame);</p>
-<p class="p2"><span class="Apple-converted-space">  </span>updateAnimation();</p>
-<p class="p2">});</p>
-<p class="p1"><br></p>
-<p class="p2">music.addEventListener("timeupdate", updateAnimation);</p>
-<p class="p2">music.addEventListener("seeked", updateAnimation);</p>
-<p class="p1"><br></p>
-<p class="p2">music.addEventListener("ended", () =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">  </span>cancelAnimationFrame(animationFrame);</p>
-<p class="p2"><span class="Apple-converted-space">  </span>updateAnimation();</p>
-<p class="p2"><span class="Apple-converted-space">  </span>currentWord.textContent = "END";</p>
-<p class="p2">});</p>
-<p class="p1"><br></p>
-<p class="p2">&lt;/script&gt;</p>
-<p class="p2">&lt;/body&gt;</p>
-<p class="p2">&lt;/html&gt;</p>
+  <main class="container">
+    <div class="eyebrow">AN EXPERIMENTAL MUSIC PIECE</div>
+
+    <h1>우함서가</h1>
+    <div class="subtitle">우리 · 함께 · 서로 · 같이</div>
+
+    <section class="morse-area" aria-label="우함서가 모스 부호">
+      <div class="morse-line" id="morse-line"></div>
+    </section>
+
+    <section class="player">
+      <audio id="audio" controls preload="metadata">
+        <source src="./woohamseoga.mp3" type="audio/mpeg">
+        브라우저가 오디오 재생을 지원하지 않습니다.
+      </audio>
+
+      <a class="download"
+         href="./woohamseoga.mp3"
+         download="woohamseoga.mp3">
+        DOWNLOAD AUDIO
+      </a>
+    </section>
+
+    <footer>W O O H A M S E O G A</footer>
+  </main>
+
+  <script>
+    const morse = [
+      { name: "우", code: "-.- ...." },
+      { name: "함", code: ".--- . --" },
+      { name: "서", code: "--. -" },
+      { name: "가", code: ".-.. ." }
+    ];
+
+    const line = document.getElementById("morse-line");
+    const audio = document.getElementById("audio");
+
+    const syllables = [];
+
+    morse.forEach((item) => {
+      const syllable = document.createElement("div");
+      syllable.className = "syllable";
+
+      const name = document.createElement("div");
+      name.className = "syllable-name";
+      name.textContent = item.name;
+
+      const signals = document.createElement("div");
+      signals.className = "signals";
+
+      const signalElements = [];
+
+      item.code.replace(/\s/g, "").split("").forEach((symbol) => {
+        const signal = document.createElement("span");
+        signal.className = symbol === "-" ? "signal dash" : "signal";
+        signals.appendChild(signal);
+        signalElements.push(signal);
+      });
+
+      syllable.appendChild(name);
+      syllable.appendChild(signals);
+      line.appendChild(syllable);
+
+      syllables.push(signalElements);
+    });
+
+    const patterns = morse.map(item =>
+      item.code.replace(/\s/g, "").split("")
+    );
+
+    const signalDuration = 0.42;
+    const gapDuration = 0.10;
+
+    const timeline = [];
+
+    patterns.forEach((pattern, syllableIndex) => {
+      pattern.forEach((symbol, signalIndex) => {
+        timeline.push({
+          syllableIndex,
+          signalIndex,
+          start: timeline.length * (signalDuration + gapDuration),
+          end: timeline.length * (signalDuration + gapDuration) + signalDuration
+        });
+      });
+    });
+
+    function updateAnimation() {
+      const currentTime = audio.currentTime;
+
+      syllables.forEach((signals) => {
+        signals.forEach(signal => signal.classList.remove("active"));
+      });
+
+      timeline.forEach(segment => {
+        if (
+          currentTime >= segment.start &&
+          currentTime < segment.end
+        ) {
+          const signal =
+            syllables[segment.syllableIndex][segment.signalIndex];
+
+          if (signal) {
+            signal.classList.add("active");
+          }
+        }
+      });
+    }
+
+    audio.addEventListener("timeupdate", updateAnimation);
+    audio.addEventListener("seeked", updateAnimation);
+
+    audio.addEventListener("ended", () => {
+      syllables.forEach(signals => {
+        signals.forEach(signal => signal.classList.remove("active"));
+      });
+    });
+  </script>
 </body>
 </html>
